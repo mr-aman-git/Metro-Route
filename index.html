@@ -95,7 +95,7 @@
         </div>
     </div>
     <script>
-        const stations = ["Rajiv Chowk", "RK Ashram", "Jhandewalan", "Karol Bagh", "Rajendra Place", "Patel Nagar", "Ramesh Nagar"];
+        const stations = ["New Ashok Nagar", "Anand Vihar", "Sahibabad", "Ghaziabad", "Guldhar", "Duhai", "Duhai Depot", "Murad Nagar", "Modi Nagar South", "Modi Nagar North", "Meerut South"];
         const startStationSelect = document.getElementById("startStation");
         const endStationSelect = document.getElementById("endStation");
         const infoBox = document.getElementById("infoBox");
@@ -121,16 +121,17 @@
             if (startIndex === -1 || endIndex === -1) return;
             let route = startIndex < endIndex ? stations.slice(startIndex, endIndex + 1) : stations.slice(endIndex, startIndex + 1).reverse();
             stationList.innerHTML = route.map(station => `<li class='station-item'>${station}</li>`).join('');
-            let fare = route.length * 10;
-            let time = route.length * 3;
-            infoBox.innerHTML = `💰 <strong>Fare:</strong> ₹${fare}<br>⏳ <strong>Travel Time:</strong> ${time} mins`;
+            let premiumFare = route.length * 20;
+            let normalFare = route.length * 10;
+            let time = route.length * 5;
+            infoBox.innerHTML = `💰 <strong>Premium Fare:</strong> ₹${premiumFare}<br>💰 <strong>Standard Fare:</strong> ₹${normalFare}<br><br>⏳ <strong>Travel Time:</strong> ${time} mins`;
             infoBox.style.display = "block";
         }
 
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
-            document.body.classList.toggle("light-mode");
-        }
+        // function toggleDarkMode() {
+        //     document.body.classList.toggle("dark-mode");
+        //     document.body.classList.toggle("light-mode");
+        // }
     </script>
 </body>
 </html>
