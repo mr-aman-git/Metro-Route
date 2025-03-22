@@ -1,145 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- NOT FOR PRODUCTION THIS TYPE OF ICON -->
     <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-    rel="stylesheet"
-/>
+      rel="icon"
+      href="https://cdn-icons-png.freepik.com/512/6435/6435468.png?ga=GA1.1.666295870.1739338018"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
     <title>Metro Route</title>
     <style>
-        * {
-            font-family: "Poppins", sans-serif;
-            transition: all 0.3s ease-in-out;
-        }
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            padding: 20px;
-        }
-        .Station-label{
-            font-weight: 600;
-        }
-    
-        .card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-        }
-        .dark-mode .card {
-            background: #222;
-            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
-        }
-        
-        
-        .dropdown {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            background: #f9f9f9;
-            cursor: pointer;
-        }
-        
-        .info-box {
-            background: #d1ecf1;
-            color: #0c5460;
-            padding: 12px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-size: 14px;
-            font-weight: 500;
-        }
-        .station-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 10px;
-        }
-        .station-item {
-            padding: 10px;
-            border-radius: 5px;
-            background: #e3f2fd;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        .amanText{
-            font-size: 8px;
-            display: flex;
-            font-weight: lighter;
-        }
-        
+      * {
+        font-family: "Poppins", sans-serif;
+        transition: all 0.3s ease-in-out;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 20px;
+      }
+      .Station-label {
+        font-weight: 600;
+      }
+
+      .card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+      .dark-mode .card {
+        background: #222;
+        box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+      }
+
+      .dropdown {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        background: #f9f9f9;
+        cursor: pointer;
+      }
+
+      .info-box {
+        background: #d1ecf1;
+        color: #0c5460;
+        padding: 12px;
+        border-radius: 8px;
+        margin: 15px 0;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .station-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 10px;
+      }
+      .station-item {
+        padding: 10px;
+        border-radius: 5px;
+        background: #e3f2fd;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+      .amanText {
+        font-size: 8px;
+        display: flex;
+        font-weight: lighter;
+      }
+      i {
+        font-size: 18px;
+      }
     </style>
-</head>
-<body class="light-mode">
+  </head>
+  <body class="light-mode">
     <div class="container">
-        <div class="card">
-            <h2 class="title">🚇 Metro Route</h2>
-            
-            <div>
-                <label class="Station-label">Start Station</label>
-                <select id="startStation" class="dropdown" onchange="updateRoute()">
-                    <option value="">Select Start Station</option>
-                </select>
-            </div>
-            <p>To</p>
-            <div>
-                <label class="Station-label">End Station</label>
-                <select id="endStation" class="dropdown" onchange="updateRoute()">
-                    <option value="">Select End Station</option>
-                </select>
-            </div>
-            
-            <div id="infoBox" class="info-box" style="display: none;"></div>
-            <ul id="stationList" class="station-list"></ul>
-            <p class="amanText">Made by Aman Sharma</p>
+      <div class="card">
+        <h2 class="title">🚇 Metro Route</h2>
+
+        <div>
+          <label class="Station-label">Start Station</label>
+          <select id="startStation" class="dropdown" onchange="updateRoute()">
+            <option value="">Select Start Station</option>
+          </select>
         </div>
-        
+        <p>To</p>
+        <div>
+          <label class="Station-label">End Station</label>
+          <select id="endStation" class="dropdown" onchange="updateRoute()">
+            <option value="">Select End Station</option>
+          </select>
+        </div>
+
+        <div id="infoBox" class="info-box" style="display: none"></div>
+        <ul id="stationList" class="station-list"></ul>
+        <p class="amanText">Made by Aman Sharma</p>
+      </div>
     </div>
     <script>
-        const stations = ["New Ashok Nagar", "Anand Vihar", "Sahibabad", "Ghaziabad", "Guldhar", "Duhai", "Duhai Depot", "Murad Nagar", "Modi Nagar South", "Modi Nagar North", "Meerut South"];
-        const startStationSelect = document.getElementById("startStation");
-        const endStationSelect = document.getElementById("endStation");
-        const infoBox = document.getElementById("infoBox");
-        const stationList = document.getElementById("stationList");
+      const stations = [
+        "New Ashok Nagar",
+        "Anand Vihar",
+        "Sahibabad",
+        "Ghaziabad",
+        "Guldhar",
+        "Duhai",
+        "Duhai Depot",
+        "Murad Nagar",
+        "Modi Nagar South",
+        "Modi Nagar North",
+        "Meerut South",
+      ];
+      const startStationSelect = document.getElementById("startStation");
+      const endStationSelect = document.getElementById("endStation");
+      const infoBox = document.getElementById("infoBox");
+      const stationList = document.getElementById("stationList");
 
-        stations.forEach(station => {
-            let option1 = new Option(station, station);
-            let option2 = new Option(station, station);
-            startStationSelect.add(option1);
-            endStationSelect.add(option2);
-        });
+      stations.forEach((station) => {
+        let option1 = new Option(station, station);
+        let option2 = new Option(station, station);
+        startStationSelect.add(option1);
+        endStationSelect.add(option2);
+      });
 
-        function updateRoute() {
-            const start = startStationSelect.value;
-            const end = endStationSelect.value;
-            if (!start || !end) {
-                infoBox.style.display = "none";
-                stationList.innerHTML = "";
-                return;
-            }
-            let startIndex = stations.indexOf(start);
-            let endIndex = stations.indexOf(end);
-            if (startIndex === -1 || endIndex === -1) return;
-            let route = startIndex < endIndex ? stations.slice(startIndex, endIndex + 1) : stations.slice(endIndex, startIndex + 1).reverse();
-            stationList.innerHTML = route.map(station => `<li class='station-item'>${station}</li>`).join('');
-            let premiumFare = route.length * 20;
-            let normalFare = route.length * 10;
-            let time = route.length * 5;
-            infoBox.innerHTML = `💰 <strong>Premium Fare:</strong> ₹${premiumFare}<br>💰 <strong>Standard Fare:</strong> ₹${normalFare}<br><br>⏳ <strong>Travel Time:</strong> ${time} mins`;
-            infoBox.style.display = "block";
+      function updateRoute() {
+        const start = startStationSelect.value;
+        const end = endStationSelect.value;
+        if (!start || !end) {
+          infoBox.style.display = "none";
+          stationList.innerHTML = "";
+          return;
         }
+        let startIndex = stations.indexOf(start);
+        let endIndex = stations.indexOf(end);
+        if (startIndex === -1 || endIndex === -1) return;
+        let route =
+          startIndex < endIndex
+            ? stations.slice(startIndex, endIndex + 1)
+            : stations.slice(endIndex, startIndex + 1).reverse();
+        stationList.innerHTML = route
+          .map((station) => `<li class='station-item'>${station}</li>`)
+          .join("");
+        let premiumFare = route.length * 20;
+        let normalFare = route.length * 10;
+        let time = route.length * 5;
+        infoBox.innerHTML = ` <strong>Premium Fare:</strong> ₹${premiumFare}<br> <strong>Standard Fare:</strong> ₹${normalFare}<br><br> <i class="ri-time-line"></i> <strong>Travel Time:</strong> ${time} mins`;
+        infoBox.style.display = "block";
+      }
 
-        // function toggleDarkMode() {
-        //     document.body.classList.toggle("dark-mode");
-        //     document.body.classList.toggle("light-mode");
-        // }
+      // function toggleDarkMode() {
+      //     document.body.classList.toggle("dark-mode");
+      //     document.body.classList.toggle("light-mode");
+      // }
     </script>
-</body>
+  </body>
 </html>
