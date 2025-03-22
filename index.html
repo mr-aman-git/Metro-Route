@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metro Route Finder</title>
+    <style>
+        * {
+            font-family: "Poppins", sans-serif;
+            transition: all 0.3s ease-in-out;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        .light-mode {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        .dark-mode {
+            background-color: #121212;
+            color: #fff;
+        }
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .dark-mode .card {
+            background: #222;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+        }
+        .toggle-btn {
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .toggle-btn:hover {
+            background: #0056b3;
+        }
+        .dropdown {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+            cursor: pointer;
+        }
+        .dark-mode .dropdown {
+            background: #333;
+            color: #fff;
+            border: 1px solid #555;
+        }
+        .info-box {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .dark-mode .info-box {
+            background: #333;
+            color: #80cbc4;
+        }
+        .station-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        .station-item {
+            padding: 10px;
+            border-radius: 5px;
+            background: #e3f2fd;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .dark-mode .station-item {
+            background: #444;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <div class="container">
+        <div class="card">
+            <h2 class="title">🚇 Metro Route Finder</h2>
+            <button onclick="toggleDarkMode()" class="toggle-btn">🌙 Dark Mode</button>
+            <div>
+                <label>Start Station</label>
+                <select id="startStation" class="dropdown" onchange="updateRoute()">
+                    <option value="">Select Start Station</option>
+                </select>
+            </div>
+            <h4>To</h4>
+            <div>
+                <label>End Station</label>
+                <select id="endStation" class="dropdown" onchange="updateRoute()">
+                    <option value="">Select End Station</option>
+                </select>
+            </div>
+            <div id="infoBox" class="info-box" style="display: none;"></div>
+            <ul id="stationList" class="station-list"></ul>
+        </div>
+    </div>
+    <script>
+        const stations = ["Rajiv Chowk", "RK Ashram", "Jhandewalan", "Karol Bagh", "Rajendra Place", "Patel Nagar", "Ramesh Nagar"];
+        const startStationSelect = document.getElementById("startStation");
+        const endStationSelect = document.getElementById("endStation");
+        const infoBox = document.getElementById("infoBox");
+        const stationList = document.getElementById("stationList");
+
+        stations.forEach(station => {
+            let option1 = new Option(station, station);
+            let option2 = new Option(station, station);
+            startStationSelect.add(option1);
+            endStationSelect.add(option2);
+        });
+
+        function updateRoute() {
+            const start = startStationSelect.value;
+            const end = endStationSelect.value;
+            if (!start || !end) {
+                infoBox.style.display = "none";
+                stationList.innerHTML = "";
+                return;
+            }
+            let startIndex = stations.indexOf(start);
+            let endIndex = stations.indexOf(end);
+            if (startIndex === -1 || endIndex === -1) return;
+            let route = startIndex < endIndex ? stations.slice(startIndex, endIndex + 1) : stations.slice(endIndex, startIndex + 1).reverse();
+            stationList.innerHTML = route.map(station => `<li class='station-item'>${station}</li>`).join('');
+            let fare = route.length * 10;
+            let time = route.length * 3;
+            infoBox.innerHTML = `💰 <strong>Fare:</strong> ₹${fare}<br>⏳ <strong>Travel Time:</strong> ${time} mins`;
+            infoBox.style.display = "block";
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            document.body.classList.toggle("light-mode");
+        }
+    </script>
+</body>
+</html>
